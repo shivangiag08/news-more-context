@@ -5,13 +5,14 @@ import google.generativeai as genai
 from IPython.display import display
 from IPython.display import Markdown
 import pandas as pd
+import config
 
 def to_markdown(text):
     text = text.replace('•', '  *')
     return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
 API_KEY = "AIzaSyBDpSy0QWjY-83z01vSRdSrIKh5cRBZ89M"
-genai.configure(api_key=API_KEY)
+genai.configure(api_key=config.gemini_api_key)
 
 # Initialize the Gemini API model
 model = genai.GenerativeModel('gemini-pro')
