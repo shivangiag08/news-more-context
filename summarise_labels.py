@@ -21,30 +21,38 @@ generation_config = {
 }
 
 safety_settings = [
-{
-"category": "HARM_CATEGORY_HARASSMENT",
-"threshold": "BLOCK_NONE"
-},
-{
-"category": "HARM_CATEGORY_HATE_SPEECH",
-"threshold": "BLOCK_NONE"
-},
-{
-"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-"threshold": "BLOCK_NONE"
-},
-{
-"category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-"threshold": "BLOCK_NONE"
-},
+    {
+        "category": "HARM_CATEGORY_DANGEROUS",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_NONE",
+    },
 ]
 
 model = genai.GenerativeModel(model_name="gemini-pro", generation_config=generation_config, safety_settings=safety_settings)
 
 def summarize_content(content):
-    # Use the Gemini API to summarize the content
-    response = model.generate_content("Summarize the following content in max 50 words. Write an abstractive summary based only on what is written. Do not retain any other context: " + content,safety_settings=safety_settings,generation_config=generation_config)
-    return response.text
+    try:
+        # Use the Gemini API to summarize the content
+        response = model.generate_content("Summarize the following content in max 50 words. Write an abstractive summary based only on what is written. Do not retain any other context: " + content,safety_settings=safety_settings,generation_config=generation_config)
+        return response.text
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
 def copy_rows(start_row, end_row):
     # Read the CSV file into a DataFrame
@@ -64,5 +72,5 @@ def add_summaries(df_subset,mode='a'):
     df_subset.to_csv('data_with_summaries.csv', mode=mode, header=False if mode == 'a' else True, index=False, encoding='utf-8')
 
 # Call the functions
-df_subset = copy_rows(700, 800)
+df_subset = copy_rows(1700,2000)
 add_summaries(df_subset, mode='a')
