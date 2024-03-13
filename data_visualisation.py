@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load the dataset
-data = pd.read_csv('data_with_summaries.csv')
+data = pd.read_csv('/Users/tanmay/Downloads/rating.csv')
 
 # Check the basic information of the dataset
 print(data.info())
