@@ -51,7 +51,9 @@ X_article = tfidf_vectorizer.fit_transform(data['article'])
 X = pd.concat([pd.DataFrame(X_title.toarray()), pd.DataFrame(X_description.toarray()), pd.DataFrame(X_content.toarray())], axis=1)
 
 # Apply PCA
-pca = PCA(n_components=2)
+# Select the most important features using PCA
+# Update PCA to capture more components based on explained variance ratio
+pca = PCA(n_components=0.95)  # Retain 95% of the variance
 X_pca = pca.fit_transform(X)
 
 # Visualize PCA components
