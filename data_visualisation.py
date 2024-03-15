@@ -48,6 +48,7 @@ X_content = tfidf_vectorizer.fit_transform(data['content'])
 X_article = tfidf_vectorizer.fit_transform(data['article'])
 
 # Combine TF-IDF features
+""" 
 X = pd.concat([pd.DataFrame(X_title.toarray()), pd.DataFrame(X_description.toarray()), pd.DataFrame(X_content.toarray())], axis=1)
 
 # Apply PCA
@@ -55,10 +56,12 @@ X = pd.concat([pd.DataFrame(X_title.toarray()), pd.DataFrame(X_description.toarr
 # Update PCA to capture more components based on explained variance ratio
 pca = PCA(n_components=0.95)  # Retain 95% of the variance
 X_pca = pca.fit_transform(X)
-
 # Visualize PCA components
 plt.figure(figsize=(8, 6))
 plt.scatter(X_pca[:, 0], X_pca[:, 1])
 plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
-plt.show()
+plt.show() """
+
+#print the number of articles with source_name as Daily News and title_sentiment as 0
+print(data[(data['source_name'] == 'ETF Daily News') & (data['title_sentiment'] == 'Neutral')].shape[0])
