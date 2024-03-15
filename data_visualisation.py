@@ -100,7 +100,7 @@ proportions = {
 }
 
 df = pd.DataFrame(proportions).T
-df.plot(kind='bar', stacked=True, figsize=(12, 8), colormap='#9C365A')
+df.plot(kind='bar', stacked=True, figsize=(12, 8), colormap='viridis')
 plt.title('Title Sentiment Proportions by Source Name')
 plt.xlabel('Source Name')
 plt.ylabel('Proportion (%)')
