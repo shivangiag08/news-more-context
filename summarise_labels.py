@@ -72,5 +72,5 @@ def add_summaries(df_subset,mode='a'):
     df_subset.to_csv('data_with_summaries.csv', mode=mode, header=False if mode == 'a' else True, index=False, encoding='utf-8')
 
 # Call the functions
-df_subset = copy_rows(15000,15500)
+df_subset = copy_rows(15500,16000)
 add_summaries(df_subset, mode='a')
